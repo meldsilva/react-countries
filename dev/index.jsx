@@ -181,9 +181,3 @@ ReactDOM.render(
     <Container />,
     document.querySelector("#container")
 );
-
-//
-// Client ID
-// 6508a88c05ae4180a6d08f80036e64f8
-// Client Secret
-// 9bb877f05ef541d3a18556ff227c22fe
