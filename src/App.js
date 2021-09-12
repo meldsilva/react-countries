@@ -1,4 +1,4 @@
-// import './App.css';
+import './App.css';
 import {Component} from 'react';
 import CountryData from './CountryData';
 import InputForm from "./InputForm";

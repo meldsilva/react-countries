@@ -1,5 +1,6 @@
 import {  useState, useEffect} from 'react';
-// import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button, Card, ListGroup } from 'react-bootstrap'
 
 function CountryData({name}) {
     const [data, setData] = useState(null);
@@ -18,29 +19,36 @@ function CountryData({name}) {
     // };
 
    if(data) {
-        return <div>
-            <br/>
-            <img
-                alt={data[0].name}
-                src={data[0].flag}
-                height="40"/>
-            <p>Code: {data[0].alpha2Code}</p>
-            <p>Capital: {data[0].capital}</p>
-            <p>Region: {data[0].region}</p>
-            <p>Subregion: {data[0].subregion}</p>
-            <p>Population: {data[0].population.toLocaleString()}</p>
-            <p>Phone Code: {data[0].callingCodes}</p>
-            <p>Currency: {data[0].currencies[0].name
-            + " ["+ data[0].currencies[0].code}]</p>
+        return <div class="container">
+            <Card style={{ width: '20rem' }}>
+                <Card.Img variant="top" alt={data[0].name}
+                          src={data[0].flag} />
+                <Card.Body>
+                    <Card.Title>Country: {data[0].name}</Card.Title>
+                    <ListGroup className="list-group-flush">
+                        <ListGroup.Item>Code: {data[0].alpha2Code}</ListGroup.Item>
+                        <ListGroup.Item>Capital: {data[0].capital}</ListGroup.Item>
+                        <ListGroup.Item>Region: {data[0].region}</ListGroup.Item>
+                        <ListGroup.Item>Subregion: {data[0].subregion}</ListGroup.Item>
+                        <ListGroup.Item>Population: {data[0].population.toLocaleString()}</ListGroup.Item>
+                        <ListGroup.Item>Phone Code: {data[0].callingCodes}</ListGroup.Item>
+                        <ListGroup.Item>Currency Code: {data[0].currencies[0].code}</ListGroup.Item>
+                        <ListGroup.Item>Currency: {data[0].currencies[0].name}</ListGroup.Item>
+                        <ListGroup.Item>
+                            <ul>
+                                {data[0].borders.map(listitem => (
+                                    <li key={listitem}>
+                                        <a href={`https://restcountries.eu/rest/v2/alpha/${listitem}`}>
+                                            {listitem}</a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </ListGroup.Item>
+                    </ListGroup>
+                    {/*<Button variant="primary">Go somewhere</Button>*/}
+                </Card.Body>
+            </Card>
 
-            <p>Neighbors:</p>
-            <ul>
-                {data[0].borders.map(listitem => (
-                    <li key={listitem}>
-                        {listitem}
-                    </li>
-                ))}
-            </ul>
         </div>
     }
     return <div>No Country Found. Check Name and re-try.</div>
